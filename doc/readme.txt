@@ -1,6 +1,6 @@
 This small package is written in c# and built with .Net Core 2.2.3 with command “dotnet.exe publish -c Release -r win10-x64 --self-contained”. And you do need .Net Core 2.2 runtime on your computer to run it. 
 
-To run it, download the whole package into one folder, E.g., on windows, download the “TestExAC\bin\Release\netcoreapp2.2\win10-x64\publish” folder and run the TestExAC.exe in that folder as “TestExAc myvcf.vcf myoutput.txt” to test the program. One example output file (example_output.txt) is also included in the folder. 
+To run it, download the whole package from github (https://github.com/bioinfojh/TestExAC) or you can download the “TestExAC\bin\Release\netcoreapp2.2\win10-x64\publish” folder and run the TestExAC.exe in that folder as “TestExAC myvcf.vcf myoutput.txt” to test the program. One example output file (example_output.txt) is also included in the “doc” folder.  download the “TestExAC\bin\Release\netcoreapp2.2\win10-x64\publish” folder and run the TestExAC.exe in that folder as “TestExAc myvcf.vcf myoutput.txt” to test the program. One example output file (example_output.txt) is also included in the "doc" folder. 
 Or you can compile the source code and regenerate the executable. (Can use Visual Studio Code or visual studio).
 
 The package can be used to parse VCF file and then annotate with ExAC API. For demo purpose, it is written mostly as a skeleton to support general VCF file parsing and the annotation processing. It can be further extended to a version with full functions in the future.
