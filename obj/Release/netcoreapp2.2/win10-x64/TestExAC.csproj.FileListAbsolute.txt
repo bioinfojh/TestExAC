@@ -1,0 +1,14 @@
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\hostpolicy.dll
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\hostfxr.dll
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.exe
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.deps.json
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.runtimeconfig.json
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.runtimeconfig.dev.json
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.dll
+D:\git2019\TestFolder\TestExAC\bin\Release\netcoreapp2.2\win10-x64\TestExAC.pdb
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.csprojAssemblyReference.cache
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.csproj.CoreCompileInputs.cache
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.AssemblyInfoInputs.cache
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.AssemblyInfo.cs
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.dll
+D:\git2019\TestFolder\TestExAC\obj\Release\netcoreapp2.2\win10-x64\TestExAC.pdb
