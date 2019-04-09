@@ -1,5 +1,5 @@
 # TestExAC
-Test vcf annotation with ExAC API
+Test vcf annotation with ExAC API. 
 This small package is written in c# and built with .Net Core 2.2.3 with command “dotnet.exe publish -c Release -r win10-x64 --self-contained”. And you do need .Net Core 2.2 runtime on your computer to run it. 
 
 To run it, download the whole package into one folder, E.g., on windows, download the “TestExAC\bin\Release\netcoreapp2.2\win10-x64\publish” folder and run the TestExAC.exe in that folder as “TestExAc myvcf.vcf myoutput.txt” to test the program. One example output file (example_output.txt) is also included in the folder.  
