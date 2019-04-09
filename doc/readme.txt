@@ -1,21 +1,18 @@
-# TestExAC
-Test vcf annotation with ExAC API
-This small package is written in c# and built with .Net Core 2.2.3 with command ‚Äúdotnet.exe publish -c Release -r win10-x64 --self-contained‚Äù. And you do need .Net Core 2.2 runtime on your computer to run it. 
+This small package is written in c# and built with .Net Core 2.2.3 with command ìdotnet.exe publish -c Release -r win10-x64 --self-containedî. And you do need .Net Core 2.2 runtime on your computer to run it. 
 
-To run it, download the whole package into one folder, E.g., on windows, download the ‚ÄúTestExAC\bin\Release\netcoreapp2.2\win10-x64\publish‚Äù folder and run the TestExAC.exe in that folder as ‚ÄúTestExAc myvcf.vcf myoutput.txt‚Äù to test the program. One example output file (example_output.txt) is also included in the folder.  
-
-Or you can compile the source code and regenerate the executable Linux, OSX and other platforms. (Can use Visual Studio Code or visual studio).
+To run it, download the whole package into one folder, E.g., on windows, download the ìTestExAC\bin\Release\netcoreapp2.2\win10-x64\publishî folder and run the TestExAC.exe in that folder as ìTestExAc myvcf.vcf myoutput.txtî to test the program. One example output file (example_output.txt) is also included in the folder. 
+Or you can compile the source code and regenerate the executable. (Can use Visual Studio Code or visual studio).
 
 The package can be used to parse VCF file and then annotate with ExAC API. For demo purpose, it is written mostly as a skeleton to support general VCF file parsing and the annotation processing. It can be further extended to a version with full functions in the future.
 Requirements and strategy:
 1.	Type of variation, if there are multiple possibilities, annotate with the most deleterious possibility.
-The VCF file has ‚ÄúType‚Äù in the ‚ÄúINFO‚Äù field and we can extract that as it is. And ExAC also return the detailed ‚ÄúConsequence‚Äù to transcripts, we will parse and export the most deleterious consequence along with its associated gene/transcripts. Some variants do not have mapping at ExAC site, so the consequence will be annotated as ‚Äú.‚Äù. Alternatively, we could load the reference library and gene model to do some prediction ourselves, that is outside the scope of this demo project, will be left to future coding.
+The VCF file has ìTypeî in the ìINFOî field and we can extract that as it is. And ExAC also return the detailed ìConsequenceî to transcripts, we will parse and export the most deleterious consequence along with its associated gene/transcripts. Some variants do not have mapping at ExAC site, so the consequence will be annotated as ì.î. Alternatively, we could load the reference library and gene model to do some prediction ourselves, that is outside the scope of this demo project, will be left to future coding.
 2.	Depth of sequence coverage at the site of variation.
-Use ‚ÄúDP‚Äù field of the ‚ÄúINFO‚Äù, notice this is the depth combining all samples
+Use ìDPî field of the ìINFOî, notice this is the depth combining all samples
 3.	Number of reads supporting the variant.
-Use ‚ÄúAO‚Äù fields for each alternative allele variant and ‚ÄúRO‚Äù field in ‚ÄúINFO‚Äù for reference allele
+Use ìAOî fields for each alternative allele variant and ìROî field in ìINFOî for reference allele
 4.	Percentage of reads supporting the variant versus those supporting reference reads.
-For each variant, use AO/RO, you might get infinity if RO = 0; alternative, we probably can report AO/DP + ‚Äú:‚Äù+RO/DP if try to avoid infinit.
+For each variant, use AO/RO, you might get infinity if RO = 0; alternative, we probably can report AO/DP + ì:î+RO/DP if try to avoid infinit.
 5.	Allele frequency of variant from Broad Institute ExAC Project API
 Use /rest/variant and parse the variant section of the json output
 6.	Additional optional information from ExAC that you feel might be relevant.
@@ -34,16 +31,16 @@ variant 1-1650797-ATTTT-GTTTC in the example vcf, ExAC treats that as two indepe
 Some explanation of the code:
 General steps:
 Load VCF file => Annotate the variance with ExAC API => parse json response and prepare outputs
-1.	‚Äú.vcf‚Äù file is loaded with VCFFile class (VCFFile.cs). 
-	a.	The current demo version only supports local ‚Äú.vcf‚Äù files. A full-fledged version should support.gz (bzgf format) and allow online streaming of VCF files from web and cloud. 
+1.	ì.vcfî file is loaded with VCFFile class (VCFFile.cs). 
+	a.	The current demo version only supports local ì.vcfî files. A full-fledged version should support.gz (bzgf format) and allow online streaming of VCF files from web and cloud. 
 	b.	Since VCF files could be huge, to save memory and computing resources, a delay- loading mechanism is used. During initial VCF file loading, only the header sections are processed until the first line of variants. The remaining variant lines will be loaded on demand with transverse functions with c# delegates.
-2.	‚ÄúExACAnnotator‚Äù is used to annotator VCF files with its AnnotateVcfFile() function
+2.	ìExACAnnotatorî is used to annotator VCF files with its AnnotateVcfFile() function
 	a.	Implement a general IVcfAnnotator interface that can be used to implement other VCF annotators (e.g. implement GTAK Funcotator)
 	b.	Support both single VCF query mode and batch query mode. Default using batch query mode with 1000 lines by default.
 	c.	This class will prepare json queries, submit those queries to ExAC API and then parse the json responses into ExACVariantAnnotation objects
 3.	ExACVariantAnnotation is used to capture json results from ExAC API
-	a.	It implements a ‚ÄúIVariantAnnotation‚Äù interface for potentially other annotation tool extensions.
+	a.	It implements a ìIVariantAnnotationî interface for potentially other annotation tool extensions.
 	b.	It captures the five major sections of ExAC API json response (consequence, base_coverage, variant, metrics and any_covered).
-	c.	To find the most deleterious consequence for a variant, I could use ‚Äú/rest/variant/ordered_csqs‚Äù API to preform another round of search, but that adds additional searching overhead. After some searching, I found ExAC consequence ordering logic from their source code and reimplemented that using ExAC‚Äôs preferred csq_order.
-4.	Some variants have multiple alternative alleles, I choose to output each of them as an independent line during output so that the results can be opened and checked in Excel easily. But it is trivial to combine the lines to make a ‚Äú.vcf‚Äù type of outputs. The DP and OA fields will keep their original values of the variant.   
+	c.	To find the most deleterious consequence for a variant, I could use ì/rest/variant/ordered_csqsî API to preform another round of search, but that adds additional searching overhead. After some searching, I found ExAC consequence ordering logic from their source code and reimplemented that using ExACís preferred csq_order.
+4.	Some variants have multiple alternative alleles, I choose to output each of them as an independent line during output so that the results can be opened and checked in Excel easily. But it is trivial to combine the lines to make a ì.vcfî type of outputs. The DP and OA fields will keep their original values of the variant.   
 5.	The results can be further validated by GATK using its VariantToTable and Funcotator tools, I tried that in docker. On Linux, it should be easy to wrap GATK and create another independent VCF annotator with those tools. 
