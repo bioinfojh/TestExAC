@@ -1,0 +1,11 @@
+D:\git2019\TestFolder\TestExAC\bin\Debug\netcoreapp2.2\TestExAC.deps.json
+D:\git2019\TestFolder\TestExAC\bin\Debug\netcoreapp2.2\TestExAC.runtimeconfig.json
+D:\git2019\TestFolder\TestExAC\bin\Debug\netcoreapp2.2\TestExAC.runtimeconfig.dev.json
+D:\git2019\TestFolder\TestExAC\bin\Debug\netcoreapp2.2\TestExAC.dll
+D:\git2019\TestFolder\TestExAC\bin\Debug\netcoreapp2.2\TestExAC.pdb
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.csprojAssemblyReference.cache
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.csproj.CoreCompileInputs.cache
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.AssemblyInfoInputs.cache
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.AssemblyInfo.cs
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.dll
+D:\git2019\TestFolder\TestExAC\obj\Debug\netcoreapp2.2\TestExAC.pdb
